@@ -14,10 +14,12 @@ const io = new Server(wsServer, {
 });
 
 io.on("connection", (socket) => {
-  console.log("a new client connected", socket.id);
-
   socket.on("join", (data) => {
     socket.join(String(data.tenantId));
+
+    // Viewing rooms
+    // console.log(io.of("/").adapter.rooms);
+    // as disconnect from the client he will automatically remove from the no manual work needed
     // sending event from server to client
     socket.emit("join", { roomId: String(data.tenantId) });
   });
