@@ -24,7 +24,7 @@ export class KafkaBroker implements MessageBroker {
       };
     }
 
-    const kafka = new Kafka({ clientId, brokers });
+    const kafka = new Kafka(kafkaConfig);
 
     this.consumer = kafka.consumer({ groupId: clientId });
   }
