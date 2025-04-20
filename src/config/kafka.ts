@@ -60,14 +60,16 @@ export class KafkaBroker implements MessageBroker {
         });
 
         switch (topic) {
-          case "order":
+          case "order": {
             // Todo : maybe check event type
             const order = JSON.parse(message.value.toString());
             ws.io.to(order.data.tenantId).emit("order-update", order);
             break;
-          default:
+          }
+          default: {
             console.log("Doing Nothing");
             break;
+          }
         }
       },
     });
